@@ -6,11 +6,23 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.urlencoded({ extended: true }));
 
+// GET Requests
 app.get("/", (req, res) => { });
 app.get("/contato", (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'contato.html'));
 });
+app.get("/sugestao", (req, res) => {
+    var nome = req.query.nome;
+    var ingredientes = req.query.ingredientes;
+    res.send(`
+            <h1>Sugestão recebida! Obrigado!</h1>
+            <p><strong>Nome:</strong> ${nome}</p>
+            <p><strong>Ingrediente:</strong> ${ingredientes}</p>
+        `);
+});
+app.get("/api/lanches", (req, res) => {});
 
+// POST Request
 app.post("/contato", (req, res) => {
     var { name, email, assunto, mensagem } = req.body;
     res.send(`
@@ -26,8 +38,3 @@ app.post("/contato", (req, res) => {
 app.listen(port, (req, res) => {
     console.log(`Server is running at http://localhost:${port}`);
 });
-
-// var ultimoContato = null;
-// app.post("/contato", (req, res) => {
-//     ultimoContato = req.body;
-// });
