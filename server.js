@@ -5,6 +5,7 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // GET Requests
 app.get("/", (req, res) => {

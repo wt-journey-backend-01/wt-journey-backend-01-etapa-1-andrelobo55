@@ -4,22 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevBurger</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/images/hamburger.svg" type="image/x-icon">
 </head>
 <body>
+    <img src="/images/hamburger.svg" alt="logo DevBurger" class="logo">
     <h1 class="title">DevBurger</h1>
-    <div class="div-form">
+    <div>
         <form action="/sugestao" method="get">
-            <label for="name">Nome:</label>
-            <input type="text" name="name" id="name" required>
-            <label for="ingrediente"s>Ingrediente</label>
-            <input type="text" name="ingredientes" id="ingredientes" required>
+            <div>
+                <label for="name">Nome:</label>
+                <input type="text" name="name" id="name" required>
+            </div>
+            <div>
+                <label for="ingrediente"s>Ingrediente</label>
+                <input type="text" name="ingredientes" id="ingredientes" required>
+            </div>
             <button type="submit">Enviar</button>
         </form>
     </div>
-    <div>
+    <div class="div-a">
         <a href="/contato">Contato</a>
     </div>
-    <div>
+    <div class="div-a">
         <a href="/api/lanches">API Simulada</a>
     </div>
 </body>
