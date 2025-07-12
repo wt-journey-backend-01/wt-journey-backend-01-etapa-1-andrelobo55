@@ -42,7 +42,7 @@ app.get('/contato-recebido', (req, res) => {
         `);
 });
 app.get("/not-found", (req, res) => {
-    res.status(400).sendFile(path.join(__dirname, 'public', '404.html'));
+    res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
 // POST Request
