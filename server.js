@@ -22,11 +22,11 @@ app.route('/')
 // Página de contato "/contato"
 app.route('/contato')
     .get((req, res) => {
-        res.sendFile(path.join(__dirname, 'views', 'contato.html'));
+        res.status(200).sendFile(path.join(__dirname, 'views', 'contato.html'));
     })
     .post((req, res) => {
         ultimoContato = req.body;
-        res.redirect('/contato-recebido');
+        res.status(200).redirect('/contato-recebido');
     })
     .all((req, res) => {
         res.status(405).send('Método não permitido');
@@ -39,7 +39,7 @@ app.route('/contato-recebido')
             return res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
         }
 
-        const { name, email, assunto, mensagem } = ultimoContato;
+        const { nome, email, assunto, mensagem } = ultimoContato;
 
         res.send(`
         <!DOCTYPE html>
@@ -51,11 +51,11 @@ app.route('/contato-recebido')
         </head>
          <body>
             <h1>Mensagem recebida! Obrigado!</h1>
-            <p><strong>Nome:</strong> ${name}</p>
+            <p><strong>Nome:</strong> ${nome}</p>
             <p><strong>Email:</strong> ${email}</p>
             <p><strong>Assunto:</strong> ${assunto}</p>
             <p><strong>Mensagem:</strong> ${mensagem}</p>
-            <a href="/">Início</a>
+            <a href="/">Voltar para o início</a>
         </body>
         </html>
     `);
@@ -70,10 +70,20 @@ app.route('/sugestao')
         const { nome, ingredientes } = req.query;
 
         res.send(`
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contato</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
       <h1>Sugestão recebida! Obrigado!</h1>
       <p><strong>Nome:</strong> ${nome}</p>
-      <p><strong>Ingrediente:</strong> ${ingredientes}</p>
-      <a href="/">Início</a>
+      <p><strong>Ingredientes:</strong> ${ingredientes}</p>
+      <a href="/">Voltar para o início</a>
+    </body>
     `);
     })
     .all((req, res) => {
