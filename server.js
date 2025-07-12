@@ -7,6 +7,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // GET Requests
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'index.html'));
@@ -29,7 +30,7 @@ app.get("/api/lanches", (req, res) => {
 });
 app.get('/contato-recebido', (req, res) => {
     if (ultimoContato === null) {
-        return res.redirect('/not-found');
+        return res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
     }
     const {name, email, assunto, mensagem} = ultimoContato;
     res.send(`
@@ -41,15 +42,16 @@ app.get('/contato-recebido', (req, res) => {
             <a href='./'>Início</a>
         `);
 });
-app.get("/not-found", (req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
-});
 
 // POST Request
 var ultimoContato = null;
 app.post("/contato", (req, res) => {
     ultimoContato = req.body;
     res.redirect('/contato-recebido');
+});
+
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
 app.listen(port, (req, res) => {
