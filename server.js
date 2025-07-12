@@ -26,30 +26,15 @@ app.route('/contato')
     })
     .post((req, res) => {
         ultimoContato = req.body;
-        res.status(200).redirect('/contato-recebido');
-    })
-    .all((req, res) => {
-        res.status(405).send('Método não permitido');
-    });
-
-// Página de sucesso após envio do contato
-app.route('/contato-recebido')
-    .get((req, res) => {
-        if (ultimoContato === null) {
-            return res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
-        }
-
-        const { nome, email, assunto, mensagem } = ultimoContato;
-
-        res.send(`
+        res.status(200).send(`
         <!DOCTYPE html>
         <html lang="pt-br">
         <head>
             <meta charset="UTF-8">
-            <title>Confirmação</title>
+            <title>Mensagem Recebida</title>
             <link rel="stylesheet" href="/css/style.css">
         </head>
-         <body>
+        <body>
             <h1>Mensagem recebida! Obrigado!</h1>
             <p><strong>Nome:</strong> ${ultimoContato.nome}</p>
             <p><strong>Email:</strong> ${ultimoContato.email}</p>
@@ -63,6 +48,8 @@ app.route('/contato-recebido')
     .all((req, res) => {
         res.status(405).send('Método não permitido');
     });
+
+
 
 // Página de sugestão "/sugestao"
 app.route('/sugestao')
