@@ -23,25 +23,9 @@ app.get("/sugestao", (req, res) => {
             <p><strong>Ingrediente:</strong> ${ingredientes}</p>
         `);
 });
+const lanches = require('./public/data/lanches.json');
 app.get("/api/lanches", (req, res) => {
-    const lanches = [
-        {
-            "id": 1,
-            "nome": "DevBurger Clássico",
-            "ingredientes": "Pão brioche, Carne 150g, Queijo cheddar, Alface americana, Tomate fresco, Molho especial"
-        },
-        {
-            "id": 2,
-            "nome": "Burger de Bacon",
-            "ingredientes": "Pão australiano, Carne 180g, Queijo prato, Bacon crocante, Cebola caramelizada, Molho barbecue"
-        },
-        {
-            "id": 3,
-            "nome": "Commit Veggie",
-            "ingredientes": "Pão integral, Burger de grão de bico, Queijo vegano, Rúcula, Tomate seco, Maionese de ervas"
-        }
-    ]
-    res.send(lanches);
+    res.json(lanches);
 });
 
 // POST Request
