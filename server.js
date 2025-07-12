@@ -22,6 +22,7 @@ app.get("/sugestao", (req, res) => {
             <h1>Sugestão recebida! Obrigado!</h1>
             <p><strong>Nome:</strong> ${nome}</p>
             <p><strong>Ingrediente:</strong> ${ingredientes}</p>
+            <a href='./'>Início</a>
         `);
 });
 const lanches = require('./public/data/lanches.json');
