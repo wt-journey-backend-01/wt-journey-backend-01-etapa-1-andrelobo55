@@ -51,10 +51,10 @@ app.route('/contato-recebido')
         </head>
          <body>
             <h1>Mensagem recebida! Obrigado!</h1>
-            <p><strong>Nome:</strong> ${nome}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Assunto:</strong> ${assunto}</p>
-            <p><strong>Mensagem:</strong> ${mensagem}</p>
+            <p><strong>Nome:</strong> ${ultimoContato.nome}</p>
+            <p><strong>Email:</strong> ${ultimoContato.email}</p>
+            <p><strong>Assunto:</strong> ${ultimoContato.assunto}</p>
+            <p><strong>Mensagem:</strong> ${ultimoContato.mensagem}</p>
             <a href="/">Voltar para o início</a>
         </body>
         </html>
