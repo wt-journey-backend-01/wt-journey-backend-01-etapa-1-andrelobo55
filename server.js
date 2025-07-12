@@ -31,18 +31,19 @@ app.get('/contato-recebido', (req, res) => {
     if (ultimoContato === null) {
         return res.redirect('/not-found');
     }
+    const {name, email, assunto, mensagem} = ultimoContato;
     res.send(`
             <h1> Mensagem recebida! Obrigado!</h1>
-            <p><strong>Nome: </strong> ${ultimoContato.name}</p>
-            <p><strong>Email: </strong> ${ultimoContato.email}</p>
-            <p><strong>Assunto: </strong> ${ultimoContato.assunto}</p>
-            <p><strong>Mensagem: </strong> ${ultimoContato.mensagem}</p>
+            <p><strong>Nome: </strong> ${name}</p>
+            <p><strong>Email: </strong> ${email}</p>
+            <p><strong>Assunto: </strong> ${assunto}</p>
+            <p><strong>Mensagem: </strong> ${mensagem}</p>
             <a href='./'>Início</a>
         `);
 });
-// app.get("/not-found", (req, res) => {
-    
-// });
+app.get("/not-found", (req, res) => {
+    res.status(400).sendFile(path.join(__dirname, 'public', '404.html'));
+});
 
 // POST Request
 var ultimoContato = null;
